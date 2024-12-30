@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario Académico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        .upload {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .upload input {
+            margin-top: 10px;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background-color: #ddd;
+        }
+        .day {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 100px;
+        }
+        .day-header {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .event {
+            background-color: #4CAF50;
+            color: white;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Horario Académico</h1>
+    </header>
+    <main>
+        <div class="upload">
+            <h2>Cargar PDF de Horarios</h2>
+            <input type="file" id="fileInput" accept="application/pdf">
+        </div>
+        <div class="calendar" id="calendar">
+            <div class="day">
+                <div class="day-header">Lunes</div>
+            </div>
+            <div class="day">
+                <div class="day-header">Martes</div>
+            </div>
+            <div class="day">
+                <div class="day-header">Miércoles</div>
+            </div>
+            <div class="day">
+                <div class="day-header">Jueves</div>
+            </div>
+            <div class="day">
+                <div class="day-header">Viernes</div>
+            </div>
+            <div class="day">
+                <div class="day-header">Sábado</div>
+            </div>
+            <div class="day">
+                <div class="day-header">Domingo</div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Script placeholder for PDF processing and event rendering
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                alert('Procesaremos el archivo: ' + file.name);
+                // Aquí se integrará el procesamiento del PDF
+            }
+        });
+
+        // Ejemplo de ramos (esto se reemplazará con datos procesados del PDF)
+        const ramos = [
+            { asignatura: 'Taller de Innovación y Emprendimiento III', nrc: '12345', dia: 'Lunes', hora: '10:00 - 12:00' },
+            { asignatura: 'Optimización', nrc: '23456', dia: 'Martes', hora: '14:00 - 16:00' },
+            { asignatura: 'Aprendizaje de Máquina', nrc: '34567', dia: 'Miércoles', hora: '08:00 - 10:00' },
+            { asignatura: 'Ingeniería de Software I', nrc: '45678', dia: 'Jueves', hora: '16:00 - 18:00' },
+        ];
+
+        function renderCalendar(ramos) {
+            const calendar = document.getElementById('calendar');
+            const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+            ramos.forEach(ramo => {
+                const dayIndex = days.indexOf(ramo.dia);
+                if (dayIndex !== -1) {
+                    const dayElement = calendar.children[dayIndex];
+                    const eventElement = document.createElement('div');
+                    eventElement.className = 'event';
+                    eventElement.textContent = `${ramo.asignatura} (NRC: ${ramo.nrc})\n${ramo.hora}`;
+                    dayElement.appendChild(eventElement);
+                }
+            });
+        }
+
+        // Render example data
+        renderCalendar(ramos);
+    </script>
+</body>
+</html>
