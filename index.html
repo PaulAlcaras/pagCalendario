@@ -53,6 +53,12 @@
             border-radius: 5px;
             font-size: 0.9em;
         }
+        .event.teoria {
+            background-color: #2196F3;
+        }
+        .event.taller {
+            background-color: #FF9800;
+        }
     </style>
 </head>
 <body>
@@ -98,12 +104,16 @@
             if (file) {
                 alert('Procesando el archivo: ' + file.name);
 
-                // Simulación de constantes con ramos importantes
+                // Simulación de constantes con ramos importantes separados por tipo
                 const ramos = [
-                    { asignatura: 'Taller de Innovación y Emprendimiento III', nrc: '11462', dia: 'Lunes', hora: '14:00 - 17:30' },
-                    { asignatura: 'Optimización', nrc: '8237', dia: 'Martes', hora: '08:30 - 10:10' },
-                    { asignatura: 'Aprendizaje de Máquina', nrc: '8229', dia: 'Martes', hora: '10:20 - 12:00' },
-                    { asignatura: 'Ingeniería de Software I', nrc: '8292', dia: 'Martes', hora: '14:00 - 15:40' }
+                    { asignatura: 'Taller de Innovación y Emprendimiento III', tipo: 'teoria', nrc: '11462', dia: 'Lunes', hora: '14:00 - 15:30' },
+                    { asignatura: 'Taller de Innovación y Emprendimiento III', tipo: 'taller', nrc: '11463', dia: 'Lunes', hora: '15:30 - 17:30' },
+                    { asignatura: 'Optimización', tipo: 'teoria', nrc: '8237', dia: 'Martes', hora: '08:30 - 10:10' },
+                    { asignatura: 'Optimización', tipo: 'taller', nrc: '8238', dia: 'Martes', hora: '10:20 - 12:00' },
+                    { asignatura: 'Aprendizaje de Máquina', tipo: 'teoria', nrc: '8229', dia: 'Miércoles', hora: '10:20 - 12:00' },
+                    { asignatura: 'Aprendizaje de Máquina', tipo: 'taller', nrc: '8230', dia: 'Viernes', hora: '12:10 - 13:50' },
+                    { asignatura: 'Ingeniería de Software I', tipo: 'teoria', nrc: '8292', dia: 'Jueves', hora: '14:00 - 15:40' },
+                    { asignatura: 'Ingeniería de Software I', tipo: 'taller', nrc: '8293', dia: 'Jueves', hora: '15:50 - 17:30' }
                 ];
 
                 renderCalendar(ramos);
@@ -127,8 +137,8 @@
                 if (dayIndex !== -1) {
                     const dayElement = calendar.children[dayIndex];
                     const eventElement = document.createElement('div');
-                    eventElement.className = 'event';
-                    eventElement.textContent = `${ramo.asignatura} (NRC: ${ramo.nrc})\n${ramo.hora}`;
+                    eventElement.className = `event ${ramo.tipo}`;
+                    eventElement.textContent = `${ramo.asignatura} (${ramo.tipo.toUpperCase()} - NRC: ${ramo.nrc})\n${ramo.hora}`;
                     dayElement.appendChild(eventElement);
                 }
             });
@@ -136,4 +146,5 @@
     </script>
 </body>
 </html>
+
 
