@@ -24,7 +24,8 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .upload input {
+        .upload input,
+        .upload button {
             margin-top: 10px;
         }
         .calendar {
@@ -62,6 +63,7 @@
         <div class="upload">
             <h2>Cargar PDF de Horarios</h2>
             <input type="file" id="fileInput" accept="application/pdf">
+            <button id="generateButton">Crear Calendario</button>
         </div>
         <div class="calendar" id="calendar">
             <div class="day">
@@ -88,27 +90,41 @@
         </div>
     </main>
     <script>
-        // Script placeholder for PDF processing and event rendering
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
+        const generateButton = document.getElementById('generateButton');
+        const fileInput = document.getElementById('fileInput');
+
+        generateButton.addEventListener('click', function() {
+            const file = fileInput.files[0];
             if (file) {
-                alert('Procesaremos el archivo: ' + file.name);
-                // Aquí se integrará el procesamiento del PDF
+                // Procesar el archivo PDF
+                alert('Procesando el archivo: ' + file.name);
+
+                // Aquí se integrará el código para procesar el PDF y extraer los datos relevantes
+                // Por ahora, se mostrarán ramos de ejemplo en el calendario
+
+                const ramos = [
+                    { asignatura: 'Taller de Innovación y Emprendimiento III', nrc: '12345', dia: 'Lunes', hora: '10:00 - 12:00' },
+                    { asignatura: 'Optimización', nrc: '23456', dia: 'Martes', hora: '14:00 - 16:00' },
+                    { asignatura: 'Aprendizaje de Máquina', nrc: '34567', dia: 'Miércoles', hora: '08:00 - 10:00' },
+                    { asignatura: 'Ingeniería de Software I', nrc: '45678', dia: 'Jueves', hora: '16:00 - 18:00' },
+                ];
+
+                renderCalendar(ramos);
+            } else {
+                alert('Por favor, selecciona un archivo PDF primero.');
             }
         });
-
-        // Ejemplo de ramos (esto se reemplazará con datos procesados del PDF)
-        const ramos = [
-            { asignatura: 'Taller de Innovación y Emprendimiento III', nrc: '12345', dia: 'Lunes', hora: '10:00 - 12:00' },
-            { asignatura: 'Optimización', nrc: '23456', dia: 'Martes', hora: '14:00 - 16:00' },
-            { asignatura: 'Aprendizaje de Máquina', nrc: '34567', dia: 'Miércoles', hora: '08:00 - 10:00' },
-            { asignatura: 'Ingeniería de Software I', nrc: '45678', dia: 'Jueves', hora: '16:00 - 18:00' },
-        ];
 
         function renderCalendar(ramos) {
             const calendar = document.getElementById('calendar');
             const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
+            // Limpiar calendario
+            Array.from(calendar.children).forEach(day => {
+                day.innerHTML = `<div class="day-header">${day.querySelector('.day-header').textContent}</div>`;
+            });
+
+            // Renderizar eventos
             ramos.forEach(ramo => {
                 const dayIndex = days.indexOf(ramo.dia);
                 if (dayIndex !== -1) {
@@ -120,9 +136,7 @@
                 }
             });
         }
-
-        // Render example data
-        renderCalendar(ramos);
     </script>
 </body>
 </html>
+
