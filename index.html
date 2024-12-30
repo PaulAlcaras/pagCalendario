@@ -96,17 +96,14 @@
         generateButton.addEventListener('click', function() {
             const file = fileInput.files[0];
             if (file) {
-                // Procesar el archivo PDF
                 alert('Procesando el archivo: ' + file.name);
 
-                // Aquí se integrará el código para procesar el PDF y extraer los datos relevantes
-                // Por ahora, se mostrarán ramos de ejemplo en el calendario
-
+                // Simulación de constantes con ramos importantes
                 const ramos = [
-                    { asignatura: 'Taller de Innovación y Emprendimiento III', nrc: '12345', dia: 'Lunes', hora: '10:00 - 12:00' },
-                    { asignatura: 'Optimización', nrc: '23456', dia: 'Martes', hora: '14:00 - 16:00' },
-                    { asignatura: 'Aprendizaje de Máquina', nrc: '34567', dia: 'Miércoles', hora: '08:00 - 10:00' },
-                    { asignatura: 'Ingeniería de Software I', nrc: '45678', dia: 'Jueves', hora: '16:00 - 18:00' },
+                    { asignatura: 'Taller de Innovación y Emprendimiento III', nrc: '11462', dia: 'Lunes', hora: '14:00 - 17:30' },
+                    { asignatura: 'Optimización', nrc: '8237', dia: 'Martes', hora: '08:30 - 10:10' },
+                    { asignatura: 'Aprendizaje de Máquina', nrc: '8229', dia: 'Martes', hora: '10:20 - 12:00' },
+                    { asignatura: 'Ingeniería de Software I', nrc: '8292', dia: 'Martes', hora: '14:00 - 15:40' }
                 ];
 
                 renderCalendar(ramos);
